@@ -46,7 +46,7 @@ memory = map[memory]
 LOE =map[LOE]
 gender = map[gender]
 # 数据读取，特征标注
-hp_train = pd.read_csv('E:/Spyder_2022.3.29/data/machinel/lwl_data/OSA/serve_osa_2.csv')
+hp_train = pd.read_csv('serve_osa_2.csv')
 hp_train['OSAL'] = hp_train['OSAL'].apply(lambda x : +1 if x==1 else 0)
 features =["ESSL","hypertension","BQL","SBSL","drink",'smork',"snoring",'suffocate','memory','LOE','gender','age','BMI','waistline','NC']
 target = 'OSAL'
