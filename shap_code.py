@@ -70,37 +70,38 @@ if st.button('Predict'):
     if result == 'Low Risk':
         st.balloons()
     st.markdown('## Probability of High risk group:  '+str(prob)+'%')
-
-#%%SHAP
-col_names = features
-X_last = pd.DataFrame(np.array([[ESSL,hypertension,BQL,SBSL,drink,smork,snoring,suffocate,memory,LOE,gender,age,BMI,waistline,NC]]))
-X_last.columns = col_names
-X_raw = hp_train[features]
-X = pd.concat([X_raw,X_last],ignore_index=True)
-model = gbm
-#%%
-sns.set()
-explainer = shap.Explainer(model, X)
-a = len(X)-1
-#%%SHAP Force logit plot
-st.subheader('SHAP Force logit plot')
-shap_values = explainer.shap_values(X)  # 传入特征矩阵X，计算SHAP值
-# sns.set()
-fig, ax = plt.subplots(figsize=(12, 6), dpi=300)
-force_plot = shap.force_plot(explainer.expected_value,
+    #%%SHAP
+    col_names = features
+    X_last = pd.DataFrame(np.array([[ESSL,hypertension,BQL,SBSL,drink,smork,snoring,suffocate,memory,LOE,gender,age,BMI,waistline,NC]]))
+    X_last.columns = col_names
+    X_raw = hp_train[features]
+    X = pd.concat([X_raw,X_last],ignore_index=True)
+    model = gbm
+    #%%
+    sns.set()
+    explainer = shap.Explainer(model, X)
+    a = len(X)-1
+    #%%SHAP Force logit plot
+    st.subheader('SHAP Force logit plot')
+    shap_values = explainer.shap_values(X)  # 传入特征矩阵X，计算SHAP值
+    # sns.set()
+    fig, ax = plt.subplots(figsize=(12, 6), dpi=300)
+    force_plot = shap.force_plot(explainer.expected_value,
                 shap_values[a, :], 
                 X.iloc[a, :], 
                 figsize=(25, 3),
                 link = "logit",
                 matplotlib=True,
                 out_names = "Output value")
-st.pyplot(force_plot)
-#%%SHAP Water PLOT
-st.subheader('SHAP Water plot')
-shap_values = explainer(X) # 传入特征矩阵X，计算SHAP值
-fig, ax = plt.subplots(figsize=(8, 8), dpi=300)
-waterfall_plot = shap.plots.waterfall(shap_values[a,:])
-st.pyplot(waterfall_plot)
+    st.pyplot(force_plot)
+    #%%SHAP Water PLOT
+    st.subheader('SHAP Water plot')
+    shap_values = explainer(X) # 传入特征矩阵X，计算SHAP值
+    fig, ax = plt.subplots(figsize=(8, 8), dpi=300)
+    waterfall_plot = shap.plots.waterfall(shap_values[a,:])
+    st.pyplot(waterfall_plot)
+
+
 
 
 
