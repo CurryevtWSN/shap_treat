@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import sklearn
+import scikit-learn
 import matplotlib.pyplot as plt
 from sklearn.ensemble import GradientBoostingClassifier
 from imblearn.over_sampling import RandomOverSampler
