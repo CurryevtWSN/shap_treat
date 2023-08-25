@@ -10,7 +10,7 @@ import seaborn as sns
 st.set_option('deprecation.showPyplotGlobalUse', False)
 #应用标题
 st.set_page_config(page_title='Pred hypertension in  patients with OSA')
-st.title('Application and Interpretation Study of Machine Learning Models in Predicting Severe Obstructive Sleep Apnea of Adults')
+st.title('Application and Interpretation of Machine Learning Models in Predicting the Risk of Severe Obstructive Sleep Apnea in Adults')
 st.sidebar.markdown('## Variables')
 ESSL = st.sidebar.selectbox('Epworth sleepiness scale',('Normal','Low','Middle','High'),index=1)
 hypertension = st.sidebar.selectbox('Hypertension',('No','Yes'),index=1)
